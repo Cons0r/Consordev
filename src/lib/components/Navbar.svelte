@@ -4,6 +4,8 @@
     import { slide } from 'svelte/transition';
     import DarkToggle from './DarkToggle.svelte';
     import Navlink from './Navlink.svelte';
+    import { navigating } from '$app/stores';
+    import SveltePreload from '$lib/components/SveltePreload.svelte';
     export let nightwind: Typewind;
     export let loaded: Writable<boolean>;
     let mobileMenuOpen = writable(false);
@@ -12,6 +14,11 @@
         { name: 'About', link: '/about' }
     ];
 </script>
+{$navigating}
+
+{#if $navigating && $navigating.to}
+	<SveltePreload />
+{/if}
 
 <div class="bg-primarylight-900 w-full h-8 text-center">Consor</div>
 <nav class="bg-white shadow">
