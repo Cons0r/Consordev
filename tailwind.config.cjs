@@ -27,7 +27,7 @@ const config = {
 					900: '#92eb92'
 				},
 				primarydark: {
-					900: '#395239'
+					900: '#178017'
 				},
 				bglight: {
 					900: '#FFFBE7'

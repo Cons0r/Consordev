@@ -1,16 +1,20 @@
 <script lang=ts>
-    import type { Typewind } from '$lib/nwpp'
+    import type { Typewind } from '$lib/nwpp';
     import { writable, type Writable } from 'svelte/store';
     import { slide } from 'svelte/transition';
     import DarkToggle from './DarkToggle.svelte';
+    import Navlink from './Navlink.svelte';
     export let nightwind: Typewind;
     export let loaded: Writable<boolean>;
     let mobileMenuOpen = writable(false);
+
+    let pages = [
+        { name: 'Home', link: '/' },
+        { name: 'About', link: '/about' }
+    ];
 </script>
 
-<div class="bg-primarylight-900 w-full h-3">
-
-</div>
+<div class="bg-primarylight-900 w-full h-8 text-center">Consor</div>
 <nav class="bg-white shadow">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
@@ -20,11 +24,9 @@
             <img class="hidden lg:block h-8 w-auto" src="/logo/text.png" alt="Workflow">
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-            <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-            <a href="#" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Dashboard </a>
-            <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Team </a>
-            <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Projects </a>
-            <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Calendar </a>
+              {#each pages as page }
+                <Navlink simplename={page.name} link={page.link}>{page.name}</Navlink>
+              {/each}
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
@@ -63,13 +65,11 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     {#if $mobileMenuOpen}
     <div class="sm:hidden" transition:slide id="mobile-menu">
-      <div class="pt-2 pb-3 space-y-1">
-        <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
-        <a href="#" class="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Dashboard</a>
-        <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Team</a>
-        <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Projects</a>
-        <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Calendar</a>
-      </div>
+        <div class="pt-2 pb-3 space-y-1">
+          {#each pages as page }
+            <Navlink type="mobile" simplename={page.name} link={page.link}>{page.name}</Navlink>
+          {/each}
+        </div>
     </div>
     {/if}
   </nav>
