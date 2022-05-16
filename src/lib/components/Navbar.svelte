@@ -7,7 +7,6 @@
     export let nightwind: Typewind;
     export let loaded: Writable<boolean>;
     let mobileMenuOpen = writable(false);
-
     let pages = [
         { name: 'Home', link: '/' },
         { name: 'About', link: '/about' }
