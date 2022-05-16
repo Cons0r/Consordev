@@ -11,9 +11,9 @@ type Typewind = {
     getDark: () => boolean,
     mount: () => void
 }
-import nightwind from 'nightwind/helper'
+import nightwind from 'nightwind/helper';
 const nwind: Typewind = nightwind
-nwind.dark = writable(false)
+nwind.dark = writable(true)
 nwind.oldtoggle = nwind.toggle
 nwind.oldenable = nwind.enable
 nwind.getDark = () => {
@@ -60,3 +60,6 @@ nwind.enable = (dark: boolean)=>{
     nwind.oldenable(dark)
 }
 export default nwind
+export type {
+    Typewind
+}
