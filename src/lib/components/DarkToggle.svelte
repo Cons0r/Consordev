@@ -7,7 +7,8 @@
 </script>
 
 
-<button on:click={nightwind.toggle} class="text-bgdark-900">
+<button on:click={nightwind.toggle} class="bg-white text-bgdark-900 p-1 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <span class="sr-only">Toggle Dark mode</span>
     {#if $loaded}
         {#if $dark}
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
